@@ -1,0 +1,24 @@
+{
+  "name": "calc",
+  "authors": [
+    "Rashid Ahmad <decent10cs@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "semantic": "semantic-ui#^2.2.9",
+    "Ionicons": "ionicons#^2.0.1",
+    "lodash": "^4.17.4",
+    "angular-fusioncharts": "^0.0.2",
+    "fusioncharts": "^3.12.0"
+  }
+}

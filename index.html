@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Faculty Costings</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="bower_components/semantic/dist/semantic.min.css" rel="stylesheet" />
+		<link href="bower_components/Ionicons/css/ionicons.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/print.css" rel="stylesheet">
+	</head>
+
+	<body ng-app="app">
+		<!-- 	<div class="spinner"><div class="dot1"></div><div class="dot2"></div></div> -->
+		<!-- <nav class="navbar navbar-inverse"><div class="navbar-header"><a class="navbar-brand" href="test_index.php">Faculty Costings</a></div><ul class="nav navbar-nav"><li class="active"><a href="test_index.php">Home</a></li><li><a href="addfee.php">Course Fee</a></li><li><a href="staff_salary.php">Staff Salary</a></li></ul></nav> -->
+		<div class="ui inverted vertical masthead center aligned segment jumbo">
+			<!-- <div class="ui container"><div class="ui large secondary inverted pointing menu"><a class="toc item"><i class="sidebar icon"></i></a><a class="active item">Home</a><a class="item">Work</a><a class="item">Company</a><a class="item">Careers</a><div class="right item"><a class="ui inverted button">Log in</a><a class="ui inverted button">Sign Up</a></div></div></div> -->
+			<div class="ui text container">
+				<h2 class="ui inverted header">
+										<img src="Bedfordshire_Logo.png" class="ui massive image" style="width:60%">
+										</h2>
+				<h1 class="ui inverted header"></h1>
+				<h2 style="font-weight:100;-webkit-font-smoothing: antialiased; color:#fff" id="h2">Course Analysis Tool</h2>
+				<!-- <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div> -->
+			</div>
+		</div>
+		<!-- STEP FORMS-->
+		<div class="container" ng-controller="courseForm">
+			<div class="stepwizard">
+				<div class="stepwizard-row setup-panel">
+					<div class="stepwizard-step">
+						<a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+						<p>Course Details</p>
+					</div>
+					<div class="stepwizard-step">
+						<a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+						<p>Units details </p>
+					</div>
+					<div class="stepwizard-step">
+						<a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+						<p>Course Income </p>
+					</div>
+					<div class="stepwizard-step">
+						<a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+						<p>Course Costing</p>
+					</div>
+					<div class="stepwizard-step">
+						<a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a>
+						<p>Summary</p>
+					</div>
+					<!-- <div class="stepwizard-step">
+						<a href="#step-6" type="button" class="btn btn-default btn-circle" disabled="disabled">6</a>
+						<p>External File Generation</p>
+					</div> -->
+				</div>
+			</div>
+			<form role="form" class="form-wizard ui form">
+				<div class="row setup-content" id="step-1">
+					<div class="col-xs-12">
+						<div class="col-md-7 col-md-offset-2">
+							<div class="field">
+								<label class="" for="course_title">Course Title</label>
+								<div class="field">
+									<input type="text" name="courseTitle" id="courseTitle" ng-model="courseTitle" class="form-control" placeholder="Computer science, MBA">
+								</div>
+							</div>
+							<div class="field">
+								<label class="" for="course_level">Course Level</label>
+								<div class="field">
+									<select id="course_selection" name="course_selection" ng-model="courseLevel" class="ui dropdown">
+																	<option value="Select Course Level" selected > Select Course Level</option>
+																	<option value="Dimploma">Dimploma</option>
+																	<option value="Certificat">Certificat</option>
+																	<option value="Undergraduates Degree">Undergraduates Degree</option>
+																	<option value="Postgraduate Degree"> Postgraduate Degree</option>
+																</select>
+								</div>
+							</div>
+							<div class="field">
+								<label class="" for="course_duration">Course Duration</label>
+								<div class="field">
+									<select id="course_duration" name="course_duration" ng-model="courseDuration" class="ui dropdown">
+																	<option value="Select Course Duration" selected >Select Course Duration</option>
+																	<option value="Three Months">Three Months</option>
+																	<option value="Six Months">Six Months</option>
+																	<option value="One Year">One Year</option>
+																	<option value="Two Years">Two Years</option>
+																	<option value="Three Years">Three Years</option>
+																	<option value="Four Years">Four Years</option>
+																</select>
+								</div>
+							</div>
+							<!-- Select Basic -->
+							<!-- <div class="form-group row"><label class="col-md-4 control-label" for="course_title">Course Title</label><div class="col-md-5"><input type="text" name="courseTitle" id="courseTitle" ng-model="courseTitle" class="form-control" placeholder="Computer science, MBA"></div></div><div class="form-group row"><label class="col-md-4 control-label" for="course_level">Course Level</label><div class="col-md-5"><div id="course_selection1"><select id="course_selection" name="course_selection" class="form-control"><option value="" selected="selected">(please select Level)</option><option value="">Dimploma</option><option value="">Certificats</option><option value="">Undergraduates degree</option><option value=""> postgraduate Degree</option></select></div></div></div> -->
+							<!-- <div class="form-group row"><label class="col-md-4 control-label" for="course_duration">Course Duration</label><div class="col-md-5"><select id="course_duration" name="course_duration" class="form-control"><option value="" selected="selected">(please select Course Duration)</option><option value="">Three Months</option><option value="">Six Months</option><option value="">One Year</option><option value="">Two Years</option><option value="">Three Years</option><option value="">Four Years</option></select></div></div> -->
+							<div class="field">
+								<label class="" for="course_type">Course Type</label>
+								<div class="field">
+									<select id="course_type" name="course_type" ng-model="courseType" class="ui dropdown">
+																	<option value="Select Course Type" selected >Select Course Type</option>
+																	<option value="Full time">Full time</option>
+																	<option value="Full time">Part time</option>
+																</select>
+								</div>
+							</div>
+							<!-- <div class="form-group row"><label class="col-md-4 control-label" for="course_type">Course Type</label><div class="col-md-5"><select id="course_type" name="course_type" class="form-control"><option value="" selected="selected">(please select Course Type)</option><option value="">Full time</option><option value="">Part time</option></select></div></div> -->
+							<div class="form-group row">
+								<label class="col-md-4 control-label" for=""></label>
+								<div class="col-md-8">
+									<div class="ui animated button ui right floated nextBtn  big red button inverted" tabindex="0">
+										<div class="visible content">Next</div>
+										<div class="hidden content">
+											<i class="right arrow icon"></i>
+										</div>
+									</div>
+									<!-- <button class="ui right floated nextBtn  big red button inverted" style="margin:.5em 0">Next
+																	<i class=" icon ion-ios-arrow-forward"></i>
+																</button> -->
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-12"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row setup-content" id="step-2">
+					<div class="col-xs-12">
+						<div class="col-md-12">
+							<div class="ui items">
+								<div class="item">
+									<div class="content">
+										<div class="header">{{courseTitle}}</div>
+										<div class="meta">
+											<span class="price">Course Level: {{courseLevel}}</span>
+										</div>
+										<div class="description">
+											<p></p>
+										</div>
+										<div class="extra">
+											<div class="ui label basic">{{courseDuration}}</div>
+											<div class="ui label basic"> {{courseType}}</div>
+										</div>
+										<!-- <div class="extra" style="position:absolute">
+											<div class="ui right floated basic big button">
+												Total Credits: {{totalCredits | number:0}}
+											</div>
+										</div> -->
+									</div>
+								</div>
+							</div>
+							<div class="ui divider"></div>
+							<table class="ui inverted red table fixed">
+								<thead class="">
+									<tr>
+										<th class="two wide">Year</th>
+										<th>Number of 15 Credit Unit</th>
+										<th>Number of 30 Credit Unit</th>
+										<th>Number of 45 Credit Unit</th>
+										<th>Number of 60 Credit Unit</th>
+										<th style="display: flex;align-items: center;justify-content: space-between;">Total Credits </th>
+									</tr>
+								</thead>
+								<tbody class="">
+									<tr ng-repeat=" credit in credits">
+										<td scope="row">Year {{$index +1}}</td>
+										<td>
+											<div class="ui labeled input fluid">
+												<input id="{{credit.credits_15}}" ng-model="credit.credits_15" name="{{credit.credits_15}}" type="number" placeholder="15s Credits" class="">
+											</div>
+										</td>
+										<td>
+											<div class="">
+												<input id="{{credit.credits_30}}" ng-model="credit.credits_30" name="{{credit.credits_30}}" type="number" placeholder="30s Credits" class="">
+											</div>
+										</td>
+										<td>
+											<div class="ui labeled input fluid">
+												<input id="{{credit.credits_45}}" ng-model="credit.credits_45" name="{{credit.credits_45}}" type="number" placeholder="45s Credits" class="">
+											</div>
+										</td>
+										<td>
+											<div class="ui labeled input fluid">
+												<input id="{{credit.credits_60}}" ng-model="credit.credits_60" name="{{credit.credits_60}}" type="number" placeholder="60s Credits" class="">
+											</div>
+										</td>
+										<td class="">
+											<div class="ui statistics mini inverted">
+												<div class="statistic">
+													<div class="value">
+														{{(credit.credits_15*15)--(30*credit.credits_30)--(45*credit.credits_45)--(60*credit.credits_60) | number:0}}
+													</div>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr class="">
+										<th scope="row" colspan="2">
+											<button class="ui labeled icon button red small" ng-click="addCredits()">
+	<i class="ion-plus-round icon"></i>Add credits
+	</button>
+										</th>
+										<th></th>
+										<th></th>
+										<th>
+										</th>
+										<th>
+											<div class="value"> Gross Toal Credits: {{totalCredits | number:0}}
+											</div>
+										</th>
+									</tr>
+								</tfoot>
+							</table>
+							<div class="ui animated button ui right floated nextBtn  big red button inverted" tabindex="0">
+								<div class="visible content">Next</div>
+								<div class="hidden content">
+									<i class="right arrow icon"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row setup-content" id="step-3">
+					<!-- Unit Details Number of credits -->
+					<div class="ui items">
+						<div class="item">
+							<div class="content">
+								<div class="header">{{courseTitle}}</div>
+								<div class="meta">
+									<span class="price">Course Level: {{courseLevel}}</span>
+								</div>
+								<div class="description">
+									<p></p>
+								</div>
+								<div class="extra">
+									<div class="ui label basic">{{courseDuration}}</div>
+									<div class="ui label basic"> {{courseType}}</div>
+								</div>
+								<!-- <div class="extra" style="position:absolute">
+									<div class="ui right floated basic big button">
+										Total Credits: {{totalCredits | number:0}}
+									</div>
+								</div> -->
+							</div>
+						</div>
+					</div>
+					<div class="ui divider"></div>
+					<!-- File Button -->
+					<!-- Select Basic -->
+					<!-- Course INcome-->
+					<table class="ui inverted red table stackable compact fixed" id="">
+						<thead>
+							<tr>
+								<th> Year </th>
+								<th>Type</th>
+								<th>Number of students</th>
+								<!-- Number of Students * tuition fee -->
+								<th>Fee</th>
+								<th>Total Income
+									<!-- <i class=" ion-plus-round  icon circular" stlye="font-size: 1.2em;" ng-click="addStudents( 'UK') "></i> -->
+								</th>
+								<th style="text-align: right;">
+									<!-- <div class="ui  buttons small " style="">
+									<div class="ui button red" ng-click="addStudents">
+										<i class="icon ion-person-add"></i> Add student
+									</div>
+									<div class="ui floating dropdown icon button red">
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											<div class="item" data-value="drop" ng-click="addStudents( 'UK') ">UK</div>
+											<div class="item" data-value="horizontal flip" ng-click="addStudents( 'EU') ">EU</div>
+											<div class="item" data-value="fade up" ng-click="addStudents( 'INTL') ">International</div>
+										</div>
+									</div>
+								</div> -->
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="student in students">
+								<td>
+									<!-- <p>Year {{$index +1}}</p> -->
+									<div class="ui labeled input fluid">
+										<!-- <div class="ui label red" style="background:#ba2222!important;">
+										<i class="icon graduation cap"></i>
+									</div> -->
+										<input ng-model='student.mode' name="{{student.mode}}" type="text" id="{{student.mode}}" placeholder="Mode">
+									</div>
+								</td>
+								<td>
+									<select id="{{student.type}}" name="{{student.type}}" ng-model="student.type" class="ui dropdown fluid student">
+	<option value="" selected>Student type</option>
+																<option value="UK">UK</option>
+																<option value="EU">EU</option>
+																<option value="INTL">INTL</option>
+															</select>
+								</td>
+								<td>
+									<!-- <div class="form-group" ng-init="name = student.name" data-val="{{students[$index].name}}"><input ng-model='student.name' name="{{student.name}}" type="number" id="{{student.name}}" placeholder="UK Students" class="form-control input-md common"></div> -->
+									<div class="ui labeled input fluid">
+										<div class="ui label red" style="background:#ba2222!important;">
+											<i class="icon graduation cap"></i>
+										</div>
+										<input ng-model='student.name' name="{{student.name}}" type="number" id="{{student.name}}" placeholder="UK Students">
+									</div>
+								</td>
+								<td>
+									<div class="ui labeled input fluid">
+										<div class="ui label red" style="background:#ba2222!important;">£</div>
+										<input id={{student.fee}} ng-model='student.fee' name="{{student.fee}}" type="number" placeholder="£9000 ">
+									</div>
+									<!-- <div class="form-group"><input id={{student.fee}} ng-model='student.fee' name="{{student.fee}}" type="number" placeholder="£9000 " class="form-control input-md common "></div> -->
+								</td>
+								<td>
+									<div class="ui statistics mini inverted" ng-init="ukFee = student.name * student.fee">
+										<div class="statistic">
+											<div class="value">{{student.name * student.fee | currency : "£"}}</div>
+										</div>
+									</div>
+								</td>
+								<td style="text-align:right">
+									<i class="big icon ion ion-trash-b  ui" ng-click="deleteStudent($index)" styl="font-size:1.2em;"></i>
+								</td>
+							</tr>
+							<!-- <tr ng-repeat="student in students | filter:{ type: 'EU' }">
+							<td>
+								<p>Year {{$index +1}}</p>
+							</td>
+							<td>
+								<div class="ui labeled input fluid">
+									<div class="ui label red" style="background:#ba2222!important;">
+										<i class="icon graduation cap"></i>
+									</div>
+									<input ng-model='student.name' name="{{student.name}}" type="number" id="{{student.name}}" placeholder="EU Students">
+								</div>
+							</td>
+							<td>
+								<div class="ui labeled input fluid">
+									<div class="ui label red" style="background:#ba2222!important;">£</div>
+									<input id={{student.fee}} ng-model='student.fee' name="{{student.fee}}" type="number" placeholder="£9000 ">
+								</div>
+							</td>
+							<td>
+								<div class="ui statistics mini inverted" ng-init="euFee = student.name * student.fee">
+									<div class="statistic">
+										<div class="value odometer">{{student.name * student.fee | currency : "£"}}</div>
+									</div>
+								</div>
+							</td>
+							<td style="text-align:right">
+								<i class="big icon ion ion-trash-b  ui" styl="font-size:1.2em;" ng-click="deleteStudent(student)"></i>
+							</td>
+						</tr> -->
+							<!-- <tr ng-repeat="student in students | filter:{ type: 'INTL' } ">
+							<td>
+								<p>Year {{$index +1}}</p>
+							</td>
+							<td>
+								<div class="ui labeled input fluid">
+									<div class="ui label red" style="background:#ba2222!important;">
+										<i class="icon graduation cap"></i>
+									</div>
+									<input ng-model='student.name' name="{{student.name}}" type="number" id="{{student.name}}" placeholder="INTL Students">
+								</div>
+							</td>
+							<td>
+								<div class="ui labeled input fluid">
+									<div class="ui label red" style="background:#ba2222!important;">£</div>
+									<input id={{student.fee}} ng-model='student.fee' name="{{student.fee}}" type="number" placeholder="£9000 ">
+								</div>
+							</td>
+							<td>
+								<div class="ui statistics mini inverted" ng-init="intlFee = student.name * student.fee">
+									<div class="statistic">
+										<div class="value">{{student.name * student.fee | currency : "£"}}</div>
+									</div>
+								</div>
+							</td>
+							<td style="text-align:right">
+								<i class="big icon ion ion-trash-b  ui" styl="font-size:1.2em;" ng-click="deleteStudent(student)"></i>
+							</td>
+						</tr> -->
+							<tr ng-show="!students.length">
+								<td colspan="6">
+									<div class="ui icon red message">
+										<i class="ion-speakerphone icon"></i>
+										<div class="content">
+											<div class="header">
+												Add a student
+											</div>
+											<p>You can add student by clicking on add student button in top right corner </p>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tfoot>
+								<tr>
+									<th scope="row  " colspan="2">
+										<button class="ui labeled icon button red small" ng-click="addStudents()">
+<i class="icon ion-person-add"></i> Add student
+</button>
+									</th>
+									<th colspan="">
+									</th>
+									<th></th>
+									<th></th>
+									<th>
+										<div class="form-group text-center">
+											Gross Total Income:
+											<b class="odometer">{{totalIncome | currency : "£"}}</b>
+										</div>
+									</th>
+								</tr>
+							</tfoot>
+						</tbody>
+					</table>
+					<div class="ui animated button ui right floated nextBtn  big red button inverted" tabindex="0">
+						<div class="visible content">Next</div>
+						<div class="hidden content">
+							<i class="right arrow icon"></i>
+						</div>
+					</div>
+					<!-- <button class="btn btn-primary nextBtn btn-lg pull-right " type="button ">Next</button> -->
+				</div>
+				<div class="row setup-content " id="step-4">
+					<div class="ui items">
+						<div class="item">
+							<div class="content">
+								<div class="header">{{courseTitle}}</div>
+								<div class="meta">
+									<span class="price">Course Level: {{courseLevel}}</span>
+								</div>
+								<div class="description">
+									<p></p>
+								</div>
+								<div class="extra">
+									<div class="ui label basic">{{courseDuration}}</div>
+									<div class="ui label basic"> {{courseType}}</div>
+								</div>
+								<!-- <div class="extra" style="position:absolute">
+									<div class="ui right floated basic big button">
+										Total Credits: {{totalCredits | number:0}}
+									</div>
+								</div> -->
+							</div>
+						</div>
+					</div>
+					<div class="ui divider"></div>
+					<div class="ui styled accordion fluid">
+						<div class="title active ">
+							<i class="dropdown icon"></i> Staff Costing
+						</div>
+						<div class="content active">
+							<p class="transition hidden">
+								<table class="ui inverted red table fixed" id="yearZero">
+									<thead>
+										<tr>
+											<!-- <th>Staff Grade</th> -->
+											<th>Year</th>
+											<th>Grade</th>
+											<th>Number of Staff</th>
+											<th> Annual Salary</th>
+											<th>Cost
+											</th>
+											<th style="text-align:right">
+												<!-- <div class="ui  buttons small " style="float:right ">
+													<div class="ui button red">
+														<i class="icon ion-person-add"></i> Add Staff
+													</div>
+													<div class="ui floating dropdown icon button red">
+														<i class="dropdown icon"></i>
+														<div class="menu">
+															<div class="item" data-value="drop" ng-click="addStaff('Grade 9')">Grade 9</div>
+															<div class="item" data-value="horizontal flip" ng-click="addStaff('Grade 8')">Grade 8</div>
+															<div class="item" data-value="fade up" ng-click="addStaff('Grade 7')">Grade 7</div>
+															<div class="item" data-value="fade up" ng-click="addStaff('Supporting Professor')">Supporting Professor</div>
+															<div class="item" data-value="fade up" ng-click="addStaff('Professor')">Professor</div>
+															<div class="item" data-value="fade up" ng-click="addStaff('Teacher')">Teacher</div>
+															<div class="item" data-value="fade up" nng-click="addStaff('Visiting')">Helper/Visiting Staff</div>
+														</div>
+													</div>
+												</div> -->
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="staff in staffs">
+											<td>
+												<!-- <p>Year {{$index + 1}}</p> -->
+												<input ng-model='staff.name' name="{{staff.name}}" type="text" id="{{staff.name}}" placeholder="Mode">
+											</td>
+											<td>
+												<div class="ui labeled input fluid">
+													<select id="{{staff.level}}" name="{{staff.level}}" ng-model="staff.level" class="ui dropdown fluid">
+																				<option value="Select Grade" selected="selected"> Select Grade</option>
+																				<option value="Grade 7">Grade 7</option>
+																				<option value="Grade 8">Grade 8</option>
+																				<option value="Grade 9">Grade 9</option>
+																				<option value="Supporting Professor"> Supporting Professor</option>
+																			</select>
+												</div>
+												<!-- <p ng-model='staff.level' name="{{staff.level}}" id="{{staff.level}}" value="{{staff.level}}">{{staff.level}}</p> -->
+											</td>
+											<td>
+												<div class="ui labeled input fluid">
+													<div class="ui label red" style="background:#ba2222!important;">
+														<i class="icon ion-ios-people" style="margin: 0 .25em 0 0;  font-size: 1.3em;"></i>
+													</div>
+													<input ng-model='staff.numberOfStaff' name="{{student.numberOfStaff}}" type="number" id="{{student.numberOfStaff}}" placeholder="number of staffs">
+												</div>
+											</td>
+											<td>
+												<div class="ui labeled input fluid">
+													<div class="ui label red" style="background:#ba2222!important;">£</div>
+													<input ng-model='staff.salary' name="{{staff.salary}}" type="number" id="{{staff.salary}}" placeholder="salary">
+												</div>
+											</td>
+											<td style="position:relative">
+												<div class="ui statistics mini inverted">
+													<div class="statistic">
+														<div class="value"> {{ staff.numberOfStaff * staff.salary | currency : "£"}}</div>
+													</div>
+												</div>
+											</td>
+											<td style="text-align:right">
+												<i class="ion-trash-b ui big icon del" style="" ng-click="deleteStaff($index)"></i>
+											</td>
+										</tr>
+										<!-- <tr ng-repeat="staff in staffs | filter:{ level: 'Grade 8' }">
+											<td>
+												<p>Year {{$index + 1}}</p>
+											</td>
+											<td>
+												<p ng-model='staff.level' name="{{staff.level}}" id="{{staff.level}}" value="{{staff.level}}">{{staff.level}}</p>
+											</td>
+											<td>
+												<div class="ui labeled input fluid">
+													<div class="ui label red" style="background:#ba2222!important;">
+														<i class="icon ion-ios-people" style="margin: 0 .25em 0 0;  font-size: 1.3em;"></i>
+													</div>
+													<input ng-model='staff.numberOfStaff' name="{{student.numberOfStaff}}" type="number" id="{{student.numberOfStaff}}" placeholder="number of staffs">
+												</div>
+											</td>
+											<td>
+												<div class="ui labeled input fluid">
+													<div class="ui label red" style="background:#ba2222!important;">£</div>
+													<input ng-model='staff.salary' name="{{staff.salary}}" type="number" id="{{staff.salary}}" placeholder="salary">
+												</div>
+											</td>
+											<td style="position:relative">
+												<div class="ui statistics mini inverted">
+													<div class="statistic">
+														<div class="value"> {{ (($index+1) * 12 ) * staff.numberOfStaff * staff.salary | currency : "£"}}</div>
+													</div>
+												</div>
+											</td>
+											<td style="text-align:right">
+												<i class="ion-trash-b ui big icon del" style="" ng-click="deleteStaff(staff)"></i>
+											</td>
+										</tr>
+										<tr ng-repeat="staff in staffs | filter:{ level: 'Grade 7' }">
+											<td>
+												<p>Year {{$index + 1}}</p>
+											</td>
+											<td>
+												<p ng-model='staff.level' name="{{staff.level}}" id="{{staff.level}}" value="{{staff.level}}">{{staff.level}}</p>
+											</td>
+											<td>
+												<div class="ui labeled input fluid">
+													<div class="ui label red" style="background:#ba2222!important;">
+														<i class="icon ion-ios-people" style="margin: 0 .25em 0 0;  font-size: 1.3em;"></i>
+													</div>
+													<input ng-model='staff.numberOfStaff' name="{{student.numberOfStaff}}" type="number" id="{{student.numberOfStaff}}" placeholder="number of staffs">
+												</div>
+											</td>
+											<td>
+												<div class="ui labeled input fluid">
+													<div class="ui label red" style="background:#ba2222!important;">£</div>
+													<input ng-model='staff.salary' name="{{staff.salary}}" type="number" id="{{staff.salary}}" placeholder="salary">
+												</div>
+											</td>
+											<td style="position:relative">
+												<div class="ui statistics mini inverted">
+													<div class="statistic">
+														<div class="value"> {{ (($index+1) * 12 ) * staff.numberOfStaff * staff.salary | currency : "£"}}</div>
+													</div>
+												</div>
+											</td>
+											<td style="text-align:right">
+												<i class="ion-trash-b ui big icon del" style="" ng-click="deleteStaff(staff)"></i>
+											</td>
+										</tr>
+										<tr ng-repeat="staff in staffs | filter:{ level: 'Teacher' }">
+											<td>
+												<p>Year {{$index + 1}}</p>
+											</td>
+											<td>
+												<p ng-model='staff.level' name="{{staff.level}}" id="{{staff.level}}" value="{{staff.level}}">{{staff.level}}</p>
+											</td>
+											<td>
+												<div class="ui labeled input fluid">
+													<div class="ui label red" style="background:#ba2222!important;">
+														<i class="icon ion-ios-people" style="margin: 0 .25em 0 0;  font-size: 1.3em;"></i>
+													</div>
+													<input ng-model='staff.numberOfStaff' name="{{student.numberOfStaff}}" type="number" id="{{student.numberOfStaff}}" placeholder="number of staffs">
+												</div>
+											</td>
+											<td>
+												<div class="ui labeled input fluid">
+													<div class="ui label red" style="background:#ba2222!important;">£</div>
+													<input ng-model='staff.salary' name="{{staff.salary}}" type="number" id="{{staff.salary}}" placeholder="salary">
+												</div>
+											</td>
+											<td style="position:relative">
+												<div class="ui statistics mini inverted">
+													<div class="statistic">
+														<div class="value"> {{ (($index+1) * 12 ) * staff.numberOfStaff * staff.salary | currency : "£"}}</div>
+													</div>
+												</div>
+											</td>
+											<td style="text-align:right">
+												<i class="ion-trash-b ui big icon del" style="" ng-click="deleteStaff(staff)"></i>
+											</td>
+										</tr> -->
+										<!-- <tr ng-repeat="staff in staffs | filter:{ level: 'Supporting Professor' }">
+											<td>
+												<p>Year {{$index + 1}}</p>
+											</td>
+											<td>
+												<p ng-model='staff.level' name="{{staff.level}}" id="{{staff.level}}" value="{{staff.level}}">{{staff.level}}</p>
+											</td>
+											<td>
+												<div class="ui labeled input fluid">
+													<div class="ui label red" style="background:#ba2222!important;">
+														<i class="icon ion-ios-people" style="margin: 0 .25em 0 0;  font-size: 1.3em;"></i>
+													</div>
+													<input ng-model='staff.numberOfStaff' name="{{student.numberOfStaff}}" type="number" id="{{student.numberOfStaff}}" placeholder="number of staffs">
+												</div>
+											</td>
+											<td>
+												<div class="ui labeled input fluid">
+													<div class="ui label red" style="background:#ba2222!important;">£</div>
+													<input ng-model='staff.salary' name="{{staff.salary}}" type="number" id="{{staff.salary}}" placeholder="salary">
+												</div>
+											</td>
+											<td style="position:relative">
+												<div class="ui statistics mini inverted">
+													<div class="statistic">
+														<div class="value"> {{ (($index+1) * 12 ) * staff.numberOfStaff * staff.salary | currency : "£"}}</div>
+													</div>
+												</div>
+											</td>
+											<td style="text-align:right">
+												<i class="ion-trash-b ui big icon del" style="" ng-click="deleteStaff(staff)"></i>
+											</td>
+										</tr> -->
+										<tr ng-show="!staffs.length">
+											<td colspan="6">
+												<div class="ui icon red message">
+													<i class="ion-speakerphone icon"></i>
+													<div class="content">
+														<div class="header">
+															Add a Staff
+														</div>
+														<p>You can add staff by clicking on add staff button in top right corner </p>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tfoot>
+											<tr>
+												<th scope="row ">
+													<button class="ui labeled icon button red small" ng-click="addStaff()">
+	<i class="icon ion-person-add"></i> Add Staff
+	</button>
+												</th>
+												<th></th>
+												<th></th>
+												<th></th>
+												<th></th>
+												<th>
+													<div class="form-group text-right">
+														Gross Total Income: {{totalStaffExpense | currency : "£"}}
+													</div>
+												</th>
+											</tr>
+										</tfoot>
+									</tfoot>
+								</table>
+							</p>
+						</div>
+						<div class="title active">
+							<i class="dropdown icon"></i> Additional Costs
+						</div>
+						<div class="content active">
+							<table class="ui inverted red table fixed" id="yearZero">
+								<thead>
+									<tr>
+										<!-- <th>Staff Grade</th> -->
+										<th>Desription</th>
+										<th style="">Cost
+
+										</th>
+
+								</thead>
+								<tbody>
+									<tr ng-repeat="cost in adtionalExpense">
+										<td>
+											<div class="field">
+												<textarea rows="1" ng-model="cost.description" value="{{cost.description}}"></textarea>
+											</div>
+										</td>
+										<td>
+											<div class="ui labeled input fluid">
+												<div class="ui label red" style="background:#ba2222!important;">£</div>
+												<input ng-model="cost.cost" name="{{cost.cost}}" id="{{cost.cost}}" type="number" id="" placeholder="Cost" class="">
+											</div>
+										</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th>
+
+											<button class="ui labeled icon button red small" ng-click="addAditionalExpense()">
+<i class="ion-plus-round icon " style="font-size: 1.5em; text-align:right;cursor:pointer" ></i> Add Expense
+</button>
+										</th>
+										<th>
+											<div class="form-group text-right">
+												Total Aditional Expense: {{totalAditionalExpense | currency : "£"}}
+											</div>
+										</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+					<br>
+					<div class="ui animated button ui right floated nextBtn  big red button inverted" tabindex="0">
+						<div class="visible content">Next</div>
+						<div class="hidden content">
+							<i class="right arrow icon"></i>
+						</div>
+					</div>
+				</div>
+				<div class="row setup-content " id="step-5">
+					<div class="ui items">
+						<div class="item">
+							<div class="content">
+								<div class="header">{{courseTitle}}</div>
+								<div class="meta">
+									<span class="price">Course Level: {{courseLevel}}</span>
+								</div>
+								<div class="description">
+									<p></p>
+								</div>
+								<div class="extra">
+									<div class="ui label basic">{{courseDuration}}</div>
+									<div class="ui label basic"> {{courseType}}</div>
+									<div class="ui right floated print ui animated button ui  floated    red " tabindex="0" ng-click="printDoc()">
+										<div class="visible content">Print</div>
+										<div class="hidden content">
+											<i class=" print icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="extra" style="position:absolute">
+								<div class="ui right floated basic big button">
+									Total Credits: {{totalCredits | number:0}}
+								</div>
+							</div> -->
+						</div>
+						<div class="ui divider"></div>
+
+						<div class="sixteen wide column" style=" ">
+							<div class="" style="text-align:center; width:100%">
+								<div ng-if="courseIncome <= 5000">
+									<button class="fluid ui button red big" style="border-radius: 0;">Surpluse</button>
+									<!-- code to render the regular video block -->
+								</div>
+								<div ng-if="courseIncome >= 5001">
+									<button class="fluid ui button green big" style="border-radius: 0;">Surpluse</button>
+									<!-- code to render the regular video block -->
+								</div>
+								<div class="ui statistics tiny" style="text-align:center; width:100%">
+									<div class="red statistic" style="text-align:center; width:100%">
+										<div class="value odometer">
+											<!-- {{totalIncome | currency : "£"}} - {{totalAditionalExpense + totalStaffExpense | currency : "£"}} =
+											{{ courseIncome | currency : "£"}} -->
+											{{ courseIncome | currency : "£"}}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h4 class="ui horizontal divider header">
+  <i class="bar chart icon"></i>
+  Summary
+</h4>
+						<div class="ui internally  grid">
+							<div class="eight wide column">
+								<table class="ui single line table striped selectable red ">
+									<thead>
+										<tr>
+											<th colspan="4">
+												Income of {{courseTitle}}
+											</th>
+										</tr>
+										<tr>
+											<th>Year</th>
+											<th>type</th>
+											<th>No of Students</th>
+											<th>income</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="student1 in students">
+											<td> {{student1.mode}}</td>
+											<td>{{student1.type}}</td>
+											<td>{{student1.name}}</td>
+											<td>{{student1.name * student1.fee | currency : "£"}}</td>
+										</tr>
+										<tr>
+											<td colspan="2"></td>
+											<td colspan=""><b>Total Income</b></td>
+											<td><b>{{totalIncome | currency : "£"}}</b></td>
+										</tr>
+										<tr>
+											<td colspan="2"></td>
+											<td colspan=""><b>Total Students</b></td>
+											<td> <b>{{totalStudent | number:0 }}</b></td>
+										</tr>
+									</tbody>
+								</table>
+								<table class="ui single line table striped selectable compact red ">
+									<thead>
+										<tr>
+											<th colspan="5">
+												Unit Information of {{courseTitle}}
+											</th>
+										</tr>
+										<tr>
+											<th>Year</th>
+											<th>15 Credit </th>
+											<th>30 Credit </th>
+											<th>45 Credit </th>
+											<th>60 Credit </th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="cre in credits">
+											<td> Year {{$index + 1}}</td>
+											<td> {{cre.credits_15}}</td>
+											<td>{{cre.credits_30}}</td>
+											<td>{{cre.credits_45}}</td>
+											<td>{{cre.credits_60}}</td>
+										</tr>
+										<tr>
+											<td colspan="2"></td>
+											<td colspan="2"><b>Total Credits</b></td>
+											<td><b>{{totalCredits |  number:0}}</b></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="eight wide column">
+								<table class="ui single line table striped selectable red ">
+									<thead>
+										<tr>
+											<th colspan="4">Expandetures of {{courseTitle}}</th>
+										</tr>
+										<tr>
+											<th>Mode</th>
+											<th>Grade</th>
+											<th>No of Staff</th>
+											<th>Salary</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="staff in staffs">
+											<td>{{staff.mode}}</td>
+											<td>{{staff.level}}</td>
+											<td>{{staff.numberOfStaff | number:0}}</td>
+											<td>{{staff.salary}}</td>
+										</tr>
+										<tr>
+											<td colspan="2"></td>
+											<td><b>Total staff</b></td>
+											<td><b>{{totalStaffs | number:0}}</b></td>
+										</tr>
+										<tr>
+											<td colspan="2"></td>
+											<td><b>Staff expense</b> </td>
+											<td><b>{{totalStaffExpense | currency : "£"}}</b></td>
+										</tr>
+									</tbody>
+								</table>
+								<table class="ui single line table striped selectable red">
+									<thead>
+										<tr>
+											<th colspan="3">
+												Additional Expenses
+											</th>
+										</tr>
+										<tr>
+											<th>No</th>
+											<th>Description</th>
+											<th>Cost</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="exp in adtionalExpense">
+											<td>{{$index + 1}}</td>
+											<td>{{exp.description}}</td>
+											<td>{{exp.cost}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<td></td>
+										<td colspan=""><b>Total Additinal Expenses</b></td>
+										<td><b>{{totalAditionalExpense | currency : "£"}}</b></td>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<!-- <div class="row">
+								<div class="sixteen wide column">
+									<div class="ui animated button ui fluid floated   big red button print " tabindex="0" ng-click="printDoc()">
+										<div class="visible content">Print</div>
+										<div class="hidden content">
+											<i class=" print icon"></i>
+										</div>
+									</div>
+								</div>
+							</div> -->
+
+					</div>
+					<div class="ui modal ui small basic   transition   approved">
+						<div class="header">Delete Stafff</div>
+						<div class="content">
+							<p>Are you sure to delete?</p>
+						</div>
+						<div class="actions">
+							<div class="ui red basic cancel inverted button">
+								<i class="remove icon"></i> No
+							</div>
+							<div class="ui green ok inverted button">
+								<i class="checkmark icon"></i> Yes
+							</div>
+						</div>
+					</div>
+					<div class="ui modal ui small basic student  transition   ">
+						<div class="header">Delete student record</div>
+						<div class="content">
+							<p>Are you sure to delete?</p>
+						</div>
+						<div class="actions">
+							<div class="ui red basic cancel inverted button">
+								<i class="remove icon"></i> No
+							</div>
+							<div class="ui green ok inverted button">
+								<i class="checkmark icon"></i> Yes
+							</div>
+						</div>
+					</div>
+			</form>
+			</div>
+			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+			<!-- Include all compiled plugins (below), or include individual files as needed -->
+			<!-- AngularJs CDN -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular.min.js "></script>
+			<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js "></script> -->
+			<!-- <script src="bower_components/jquery/dist/jquery.min.js "></script> -->
+			<script src="bower_components/jquery/dist/jquery.min.js "></script>
+			<script src="bower_components/semantic/dist/semantic.min.js "></script>
+			<script src="bower_components/lodash/dist/lodash.min.js "></script>
+			<!-- <script src="js/bootstrap.min.js "></script> -->
+			<script src="js/style.js "></script>
+			<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+			<script type="text/javascript " src="js/expandbar.js "></script>
+			<script src="js/index.js " type="text/javascript "></script>
+	</body>
+
+</html>

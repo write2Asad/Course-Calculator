@@ -1,0 +1,24 @@
+@media print {
+    body {
+        -webkit-print-color-adjust: exact;
+    }
+    .fluid.ui.button.green {
+        width: 100%;
+        background: #16ab39 !important;
+        color: #fff !important
+    }
+    .fluid.ui.button.red {
+        width: 100%;
+        background: #db2828 !important;
+        color: #fff !important
+    }
+    .stepwizard {
+        display: none;
+    }
+    #h2 {
+        color: #fff !important;
+    }
+    .print {
+        display: none !important;
+    }
+}
